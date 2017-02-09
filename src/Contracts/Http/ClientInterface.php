@@ -1,13 +1,13 @@
 <?php
 
-namespace Slicvic\Geoip\Contracts;
+namespace Slicvic\Geoip\Contracts\Http;
 
 /**
  * Interface for HTTP clients.
  *
- * @package Slicvic\Geoip\Contracts
+ * @package Slicvic\Geoip\Contracts\Http
  */
-interface HttpClientInterface
+interface ClientInterface
 {
     /**
      * Send HTTP GET request.
