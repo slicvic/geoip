@@ -5,7 +5,7 @@ namespace Slicvic\Geoip\Http;
 use Slicvic\Geoip\Contracts\Http\ResponseInterface;
 
 /**
- * Abstract HTTP response.
+ * Abstract base class for HTTP responses.
  */
 abstract class AbstractResponse implements ResponseInterface
 {
@@ -31,9 +31,9 @@ abstract class AbstractResponse implements ResponseInterface
      * @param string $body
      * @param array  $headers
      */
-    public function __construct($statusCode, $body, array $headers = [])
+    public function __construct($statusCode = 200, $body = '', array $headers = [])
     {
-        $this->statusCode = $statusCode;
+        $this->statusCode = (int) $statusCode;
         $this->headers = $headers;
         $this->body = $body;
     }
@@ -51,7 +51,7 @@ abstract class AbstractResponse implements ResponseInterface
      */
     public function setStatusCode($code)
     {
-        $this->statusCode = $code;
+        $this->statusCode = (int) $code;
         return $this;
     }
 
