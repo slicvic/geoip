@@ -3,6 +3,6 @@
 namespace Slicvic\Geoip\Http;
 
 /**
- * HTTP response.
+ * An HTTP response.
  */
 class Response extends AbstractResponse {}
