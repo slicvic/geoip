@@ -14,7 +14,7 @@ interface ClientInterface
      *
      * @param  string $url
      * @param  array  $params
-     * @return \Slicvic\Geoip\Http\Response
+     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
      */
     public function get($url, array $params = []);
 
@@ -23,7 +23,7 @@ interface ClientInterface
      *
      * @param  string $url
      * @param  array  $params
-     * @return \Slicvic\Geoip\Http\Response
+     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
      */
     public function post($url, array $params = []);
 
@@ -32,7 +32,7 @@ interface ClientInterface
      *
      * @param  string $url
      * @param  array  $params
-     * @return \Slicvic\Geoip\Http\Response
+     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
      */
     public function put($url, array $params = []);
 
@@ -40,7 +40,7 @@ interface ClientInterface
      * Send HTTP DELETE request.
      *
      * @param  string $url
-     * @return \Slicvic\Geoip\Http\Response
+     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
      */
     public function delete($url);
 }
