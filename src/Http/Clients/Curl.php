@@ -32,7 +32,7 @@ class Curl extends AbstractClient
      */
     public static function post($url, array $params = [], array $headers = [])
     {
-        // Todo
+        // TODO: Implement post() method.
     }
 
     /**
@@ -40,7 +40,7 @@ class Curl extends AbstractClient
      */
     public static function put($url, array $params = [], array $headers = [])
     {
-        // Todo
+        // TODO: Implement put() method.
     }
 
     /**
@@ -48,6 +48,6 @@ class Curl extends AbstractClient
      */
     public static function delete($url, array $params = [], array $headers = [])
     {
-        // Todo
+        // TODO: Implement delete() method.
     }
 }
