@@ -12,7 +12,7 @@ interface ResponseInterface
     /**
      * Get HTTP response.
      *
-     * @return Slicvic\Geoip\Contracts\Http\ResponseInterface
+     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
      */
     public function getHttpResponse();
 
