@@ -4,6 +4,8 @@ namespace Slicvic\Geoip\Contracts\Http;
 
 /**
  * Interface for HTTP responses.
+ *
+ * @package Slicvic\Geoip\Contracts\Http
  */
 interface ResponseInterface
 {
