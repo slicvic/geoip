@@ -6,6 +6,8 @@ use Slicvic\Geoip\Contracts\Http\ResponseInterface;
 
 /**
  * Abstract base class for HTTP responses.
+ *
+ * @package Slicvic\Geoip\Http
  */
 abstract class AbstractResponse implements ResponseInterface
 {
