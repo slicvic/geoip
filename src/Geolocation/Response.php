@@ -2,7 +2,7 @@
 
 namespace Slicvic\Geoip\Geolocation;
 
-use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface;
+use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface as GeoResponseInterface;
 use Slicvic\Geoip\Contracts\Http\ResponseInterface as HttpResponseInterface;
 
 /**
@@ -10,10 +10,10 @@ use Slicvic\Geoip\Contracts\Http\ResponseInterface as HttpResponseInterface;
  *
  * @package Slicvic\Geoip\Geolocation
  */
-class Response implements ResponseInterface
+class Response implements GeoResponseInterface
 {
     /**
-     * @var \Slicvic\Geoip\Contracts\Http\ResponseInterface
+     * @var null|HttpResponseInterface
      */
     protected $httpResponse;
 
@@ -51,6 +51,24 @@ class Response implements ResponseInterface
      * @var string
      */
     protected $longitude;
+
+    /**
+     * Create a new instance.
+     *
+     * @param string $ip
+     * @param string $city
+     * @param string $region
+     * @param string $country
+     * @param string $postal
+     * @param string $latitude
+     * @param string $longitude
+     * @param HttpResponseInterface|null $httpResponse
+     * @return Response
+     */
+    public static function create($ip, $city, $region, $country, $postal, $latitude, $longitude, HttpResponseInterface $httpResponse = null)
+    {
+        return (new static($ip, $city, $region, $country, $postal, $latitude, $longitude, $httpResponse));
+    }
 
     /**
      * Constructor.
