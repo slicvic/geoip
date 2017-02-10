@@ -3,11 +3,11 @@
 namespace Slicvic\Geoip\Contracts\Http;
 
 /**
- * Interface for HTTP clients.
+ * RESTful Interface for HTTP clients.
  *
  * @package Slicvic\Geoip\Contracts\Http
  */
-interface ClientInterface
+interface RestInterface
 {
     /**
      * Send HTTP GET request.
