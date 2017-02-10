@@ -14,7 +14,7 @@ class Curl extends AbstractClient
     /**
      * {@inheritdoc}
      */
-    public static function get($url, array $params = [], array $headers = [])
+    public function get($url, array $params = [], array $headers = [])
     {
         $queryString = (count($params)) ? '?' . http_build_query($params) : '';
         $curlHandle = curl_init();
@@ -30,24 +30,24 @@ class Curl extends AbstractClient
     /**
      * {@inheritdoc}
      */
-    public static function post($url, array $params = [], array $headers = [])
+    public function post($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement post() method.
+        // TODO: Implement method.
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function put($url, array $params = [], array $headers = [])
+    public function put($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement put() method.
+        // TODO: Implement method.
     }
 
     /**
      * {@inheritdoc}
      */
-    public static function delete($url, array $params = [], array $headers = [])
+    public function delete($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement delete() method.
+        // TODO: Implement method.
     }
 }
