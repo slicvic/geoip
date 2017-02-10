@@ -6,6 +6,8 @@ use Slicvic\Geoip\Http\Response;
 
 /**
  * A cURL HTTP client.
+ *
+ * @package Slicvic\Geoip\Http\Clients
  */
 class Curl extends AbstractClient
 {
@@ -15,12 +17,12 @@ class Curl extends AbstractClient
     public static function get($url, array $params = [], array $headers = [])
     {
         $queryString = (count($params)) ? '?' . http_build_query($params) : '';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url . $queryString);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $body = curl_exec($ch);
-        $headers = curl_getinfo($ch);
-        curl_close($ch);
+        $curlHandle = curl_init();
+        curl_setopt($curlHandle, CURLOPT_URL, $url . $queryString);
+        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+        $body = curl_exec($curlHandle);
+        $headers = curl_getinfo($curlHandle);
+        curl_close($curlHandle);
         $response = new Response($body, $headers['http_code'], $headers);
         return $response;
     }
