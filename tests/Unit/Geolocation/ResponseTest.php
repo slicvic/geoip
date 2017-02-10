@@ -4,7 +4,7 @@ namespace Slicvic\Geoip\Test\Unit\Geolocation;
 
 use PHPUnit\Framework\TestCase;
 use Slicvic\Geoip\Http\Response as HttpResponse;
-use Slicvic\Geoip\Geolocation\Response as GeolocationResponse;
+use Slicvic\Geoip\Geolocation\Response as GeoResponse;
 
 class ResponseTest extends TestCase
 {
@@ -23,7 +23,7 @@ class ResponseTest extends TestCase
             ['content_type' => 'text/html']
         );
 
-        $response = new GeolocationResponse($ip, $city, $region, $country, $postal, $latitude, $longitude, $httpResponse);
+        $response = new GeoResponse($ip, $city, $region, $country, $postal, $latitude, $longitude, $httpResponse);
 
         $this->assertSame($ip, $response->getIp());
         $this->assertSame($city, $response->getCity());
