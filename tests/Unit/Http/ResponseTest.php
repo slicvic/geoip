@@ -14,7 +14,7 @@ class ResponseTest extends TestCase
     public function setUp()
     {
         $this->statusCode = 404;
-        $this->body = '<!doctype html><html><head><title></title></head><body></body></html>';
+        $this->body = '<!doctype html><html><head><title></title></head><body>404 Not Found</body></html>';
         $this->headers = [
             'content_type' => 'text/html'
         ];
