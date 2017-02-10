@@ -27,15 +27,15 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * Constructor.
      *
-     * @param int    $statusCode
      * @param string $body
+     * @param int    $statusCode
      * @param array  $headers
      */
-    public function __construct($statusCode = 200, $body = '', array $headers = [])
+    public function __construct($body = '', $statusCode = 200, array $headers = [])
     {
+        $this->body = $body;
         $this->statusCode = (int) $statusCode;
         $this->headers = $headers;
-        $this->body = $body;
     }
 
     /**
@@ -49,9 +49,9 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * {@inheritdoc}
      */
-    public function setStatusCode($code)
+    public function setStatusCode($statusCode)
     {
-        $this->statusCode = (int) $code;
+        $this->statusCode = (int) $statusCode;
         return $this;
     }
 

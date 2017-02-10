@@ -14,7 +14,7 @@ class ResponseTest extends TestCase
     public function setUp()
     {
         $this->statusCode = 200;
-        $this->body = '<html><head><title></title></head><body></body></html>';
+        $this->body = '<!doctype html><html><head><title></title></head><body></body></html>';
         $this->headers = [
             'content_type' => 'text/html'
         ];
@@ -22,7 +22,7 @@ class ResponseTest extends TestCase
 
     public function testConstructor()
     {
-        $response = new Response($this->statusCode, $this->body, $this->headers);
+        $response = new Response($this->body, $this->statusCode, $this->headers);
         $this->assertSame($this->statusCode, $response->getStatusCode());
         $this->assertSame($this->body, $response->getBody());
         $this->assertSame($this->headers, $response->getHeaders());
