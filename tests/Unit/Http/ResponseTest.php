@@ -23,9 +23,9 @@ class ResponseTest extends TestCase
     public function testConstructor()
     {
         $response = new Response($this->statusCode, $this->body, $this->headers);
-        $this->assertSame($response->getStatusCode(), $this->statusCode);
-        $this->assertSame($response->getBody(), $this->body);
-        $this->assertSame($response->getHeaders(), $this->headers);
+        $this->assertSame($this->statusCode, $response->getStatusCode());
+        $this->assertSame($this->body, $response->getBody());
+        $this->assertSame($this->headers, $response->getHeaders());
     }
 
     public function testSetters()
@@ -34,9 +34,9 @@ class ResponseTest extends TestCase
         $response->setStatusCode($this->statusCode);
         $response->setBody($this->body);
         $response->setHeaders($this->headers);
-        $this->assertSame($response->getStatusCode(), $this->statusCode);
-        $this->assertSame($response->getBody(), $this->body);
-        $this->assertSame($response->getHeaders(), $this->headers);
+        $this->assertSame($this->statusCode, $response->getStatusCode());
+        $this->assertSame($this->body, $response->getBody());
+        $this->assertSame($this->headers, $response->getHeaders());
     }
 
     public function testSettersChaining()
@@ -45,8 +45,8 @@ class ResponseTest extends TestCase
             ->setStatusCode($this->statusCode)
             ->setBody($this->body)
             ->setHeaders($this->headers);
-        $this->assertSame($response->getStatusCode(), $this->statusCode);
-        $this->assertSame($response->getBody(), $this->body);
-        $this->assertSame($response->getHeaders(), $this->headers);
+        $this->assertSame($this->statusCode, $response->getStatusCode());
+        $this->assertSame($this->body, $response->getBody());
+        $this->assertSame($this->headers, $response->getHeaders());
     }
 }
