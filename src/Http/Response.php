@@ -3,7 +3,7 @@
 namespace Slicvic\Geoip\Http;
 
 /**
- * An HTTP client response.
+ * An HTTP response.
  *
  * @package Slicvic\Geoip\Http
  */

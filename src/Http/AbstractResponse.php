@@ -5,7 +5,7 @@ namespace Slicvic\Geoip\Http;
 use Slicvic\Geoip\Contracts\Http\ResponseInterface;
 
 /**
- * Abstract base class for HTTP client responses.
+ * Abstract base class for HTTP responses.
  *
  * @package Slicvic\Geoip\Http
  */
