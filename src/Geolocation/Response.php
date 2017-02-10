@@ -73,6 +73,7 @@ class Response implements ResponseInterface
         $this->postal = $postal;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
+        $this->httpResponse = $httpResponse;
     }
 
     /**
