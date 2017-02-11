@@ -7,46 +7,31 @@ use Slicvic\Geoip\Http\Response;
 
 class ResponseTest extends TestCase
 {
-    protected $statusCode;
-    protected $body;
-    protected $headers;
-
-    public function setUp()
+    public function testConstructorAndGetters()
     {
-        $this->statusCode = 404;
-        $this->body = '<!doctype html><html><head><title></title></head><body>404 Not Found</body></html>';
-        $this->headers = [
-            'content_type' => 'text/html'
-        ];
-    }
-
-    public function testConstructor()
-    {
-        $response = new Response($this->body, $this->statusCode, $this->headers);
-        $this->assertSame($this->statusCode, $response->getStatusCode());
-        $this->assertSame($this->body, $response->getBody());
-        $this->assertSame($this->headers, $response->getHeaders());
-    }
-
-    public function testSetters()
-    {
+        // Test default parameters
         $response = new Response();
-        $response->setStatusCode($this->statusCode);
-        $response->setBody($this->body);
-        $response->setHeaders($this->headers);
-        $this->assertSame($this->statusCode, $response->getStatusCode());
-        $this->assertSame($this->body, $response->getBody());
-        $this->assertSame($this->headers, $response->getHeaders());
-    }
+        $this->assertSame('', $response->getBody());
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame([], $response->getHeaders());
 
-    public function testSettersChaining()
-    {
-        $response = (new Response())
-            ->setStatusCode($this->statusCode)
-            ->setBody($this->body)
-            ->setHeaders($this->headers);
-        $this->assertSame($this->statusCode, $response->getStatusCode());
-        $this->assertSame($this->body, $response->getBody());
-        $this->assertSame($this->headers, $response->getHeaders());
+        // Test default status code and headers
+        $response = new Response('He can kill two stones with one bird');
+        $this->assertSame('He can kill two stones with one bird', $response->getBody());
+        $this->assertSame(200, $response->getStatusCode());
+        $this->assertSame([], $response->getHeaders());
+
+        // Test default headers and that status code is cast to integer
+        $response = new Response('He can speak Russian… in French', "301");
+        $this->assertSame('He can speak Russian… in French', $response->getBody());
+        $this->assertSame(301, $response->getStatusCode());
+        $this->assertSame([], $response->getHeaders());
+
+        // Test custom headers
+        $headers = ['content_type' => 'text/html', 'api_key' => '1Uc5B32p^Fc3'];
+        $response = new Response('He is indeed, the most interesting man in the world!', 404, $headers);
+        $this->assertSame('He is indeed, the most interesting man in the world!', $response->getBody());
+        $this->assertSame(404, $response->getStatusCode());
+        $this->assertSame($headers, $response->getHeaders());
     }
 }
