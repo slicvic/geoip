@@ -8,7 +8,7 @@ use Slicvic\Geoip\Geolocation\Response as GeoResponse;
 
 class ResponseTest extends TestCase
 {
-    public function testConstructor()
+    public function testConstructorAndGetters()
     {
         $ip = '127.0.0.1';
         $city = 'Miami';
@@ -23,8 +23,19 @@ class ResponseTest extends TestCase
             ['content_type' => 'text/html']
         );
 
-        $response = new GeoResponse($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude);
+        // Test default parameters
+        $response = new GeoResponse($httpResponse);
+        $this->assertSame($httpResponse, $response->getHttpResponse());
+        $this->assertSame('', $response->getIp());
+        $this->assertSame('', $response->getCity());
+        $this->assertSame('', $response->getRegion());
+        $this->assertSame('', $response->getCountry());
+        $this->assertSame('', $response->getPostal());
+        $this->assertSame('', $response->getLatitude());
+        $this->assertSame('', $response->getLongitude());
 
+        // Test custom parameters
+        $response = new GeoResponse($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude);
         $this->assertSame($httpResponse, $response->getHttpResponse());
         $this->assertSame($ip, $response->getIp());
         $this->assertSame($city, $response->getCity());
@@ -35,7 +46,7 @@ class ResponseTest extends TestCase
         $this->assertSame($longitude, $response->getLongitude());
     }
 
-    public function testFactory()
+    public function testCreate()
     {
         $ip = '127.0.0.1';
         $city = 'Miami';
@@ -50,8 +61,19 @@ class ResponseTest extends TestCase
             ['content_type' => 'text/html']
         );
 
-        $response = GeoResponse::create($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude);
+        // Test default parameters
+        $response = GeoResponse::create($httpResponse);
+        $this->assertSame($httpResponse, $response->getHttpResponse());
+        $this->assertSame('', $response->getIp());
+        $this->assertSame('', $response->getCity());
+        $this->assertSame('', $response->getRegion());
+        $this->assertSame('', $response->getCountry());
+        $this->assertSame('', $response->getPostal());
+        $this->assertSame('', $response->getLatitude());
+        $this->assertSame('', $response->getLongitude());
 
+        // Test custom parameters
+        $response = GeoResponse::create($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude);
         $this->assertInstanceOf(GeoResponse::class, $response);
         $this->assertSame($httpResponse, $response->getHttpResponse());
         $this->assertSame($ip, $response->getIp());

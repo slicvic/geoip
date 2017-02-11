@@ -64,7 +64,7 @@ class Response implements GeoResponseInterface
      * @param string $latitude
      * @param string $longitude
      */
-    public function __construct(HttpResponseInterface $httpResponse, $ip = null, $city = null, $region = null, $country = null, $postal = null, $latitude = null, $longitude = null)
+    public function __construct(HttpResponseInterface $httpResponse, $ip = '', $city = '', $region = '', $country = '', $postal = '', $latitude = '', $longitude = '')
     {
         $this->httpResponse = $httpResponse;
         $this->ip = $ip;
@@ -89,7 +89,7 @@ class Response implements GeoResponseInterface
      * @param string $longitude
      * @return Response
      */
-    public static function create(HttpResponseInterface $httpResponse, $ip = null, $city = null, $region = null, $country = null, $postal = null, $latitude = null, $longitude = null)
+    public static function create(HttpResponseInterface $httpResponse, $ip = '', $city = '', $region = '', $country = '', $postal = '', $latitude = '', $longitude = '')
     {
         return (new static($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude));
     }
