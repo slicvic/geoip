@@ -6,14 +6,14 @@ use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface as GeoResponseInterfac
 use Slicvic\Geoip\Contracts\Http\ResponseInterface as HttpResponseInterface;
 
 /**
- * A geolocation response.
+ * A Geolocation response.
  *
  * @package Slicvic\Geoip\Geolocation
  */
 class Response implements GeoResponseInterface
 {
     /**
-     * @var null|HttpResponseInterface
+     * @var HttpResponseInterface
      */
     protected $httpResponse;
 
@@ -53,26 +53,9 @@ class Response implements GeoResponseInterface
     protected $longitude;
 
     /**
-     * Create a new instance.
-     *
-     * @param string $ip
-     * @param string $city
-     * @param string $region
-     * @param string $country
-     * @param string $postal
-     * @param string $latitude
-     * @param string $longitude
-     * @param HttpResponseInterface|null $httpResponse
-     * @return Response
-     */
-    public static function create($ip, $city, $region, $country, $postal, $latitude, $longitude, HttpResponseInterface $httpResponse = null)
-    {
-        return (new static($ip, $city, $region, $country, $postal, $latitude, $longitude, $httpResponse));
-    }
-
-    /**
      * Constructor.
      *
+     * @param HttpResponseInterface $httpResponse
      * @param string $ip
      * @param string $city
      * @param string $region
@@ -80,10 +63,10 @@ class Response implements GeoResponseInterface
      * @param string $postal
      * @param string $latitude
      * @param string $longitude
-     * @param HttpResponseInterface|null $httpResponse
      */
-    public function __construct($ip, $city, $region, $country, $postal, $latitude, $longitude, HttpResponseInterface $httpResponse = null)
+    public function __construct(HttpResponseInterface $httpResponse, $ip = null, $city = null, $region = null, $country = null, $postal = null, $latitude = null, $longitude = null)
     {
+        $this->httpResponse = $httpResponse;
         $this->ip = $ip;
         $this->city = $city;
         $this->region = $region;
@@ -91,7 +74,24 @@ class Response implements GeoResponseInterface
         $this->postal = $postal;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
-        $this->httpResponse = $httpResponse;
+    }
+
+    /**
+     * Factory.
+     *
+     * @param HttpResponseInterface $httpResponse
+     * @param string $ip
+     * @param string $city
+     * @param string $region
+     * @param string $country
+     * @param string $postal
+     * @param string $latitude
+     * @param string $longitude
+     * @return Response
+     */
+    public static function create(HttpResponseInterface $httpResponse, $ip = null, $city = null, $region = null, $country = null, $postal = null, $latitude = null, $longitude = null)
+    {
+        return (new static($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude));
     }
 
     /**
