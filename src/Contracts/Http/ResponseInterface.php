@@ -17,14 +17,6 @@ interface ResponseInterface
     public function getStatusCode();
 
     /**
-     * Set HTTP status code.
-     *
-     * @param  int $code
-     * @return $this
-     */
-    public function setStatusCode($code);
-
-    /**
      * Get response headers.
      *
      * @return array
@@ -32,25 +24,9 @@ interface ResponseInterface
     public function getHeaders();
 
     /**
-     * Set response headers.
-     *
-     * @param  array $headers
-     * @return $this
-     */
-    public function setHeaders(array $headers);
-
-    /**
      * Get response body.
      *
      * @return string
      */
     public function getBody();
-
-    /**
-     * Set response body.
-     *
-     * @param  string $body
-     * @return $this
-     */
-    public function setBody($body);
 }

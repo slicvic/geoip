@@ -35,7 +35,7 @@ abstract class AbstractResponse implements ResponseInterface
      */
     public function __construct($body = '', $statusCode = 200, array $headers = [])
     {
-        $this->body = $body;
+        $this->body = (string) $body;
         $this->statusCode = (int) $statusCode;
         $this->headers = $headers;
     }
@@ -51,15 +51,6 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * {@inheritdoc}
      */
-    public function setStatusCode($statusCode)
-    {
-        $this->statusCode = (int) $statusCode;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getHeaders()
     {
         return $this->headers;
@@ -68,26 +59,8 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * {@inheritdoc}
      */
-    public function setHeaders(array $headers)
-    {
-        $this->headers = $headers;
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getBody()
     {
         return $this->body;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setBody($body)
-    {
-        $this->body = $body;
-        return $this;
     }
 }
