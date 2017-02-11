@@ -12,7 +12,7 @@ class CurlTest extends TestCase
 
     public function setUp()
     {
-        $this->curl = new Curl;
+        $this->curl = new Curl();
     }
 
     public function testGetSuccess()
