@@ -27,7 +27,7 @@ class ResponseTest extends TestCase
         $this->assertSame(301, $response->getStatusCode());
         $this->assertSame([], $response->getHeaders());
 
-        // Test custom headers
+        // Test actual headers
         $headers = ['content_type' => 'text/html', 'api_key' => '1Uc5B32p^Fc3'];
         $response = new Response('He is indeed, the most interesting man in the world!', 404, $headers);
         $this->assertSame('He is indeed, the most interesting man in the world!', $response->getBody());
