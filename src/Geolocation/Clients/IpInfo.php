@@ -22,25 +22,24 @@ class IpInfo extends AbstractClient
             return GeoResponse::create($httpResponse, $ip);
         }
 
-        $decodedBody = json_decode($httpResponse->getBody(), true);
+        $locationData = json_decode($httpResponse->getBody(), true);
 
-        if (!isset($decodedBody['ip'])) {
+        if (!isset($locationData['ip'])) {
             return GeoResponse::create($httpResponse, $ip);
         }
 
-        if (isset($decodedBody['loc']) and strpos($decodedBody['loc'], ',') !== false) {
-            list($latitude, $longitude) = explode(',', $decodedBody['loc']);
-        } else {
-            $latitude = $longitude = '';
+        $latitude = $longitude = '';
+        if (isset($locationData['loc']) and strpos($locationData['loc'], ',') !== false) {
+            list($latitude, $longitude) = explode(',', $locationData['loc']);
         }
 
         return GeoResponse::create(
             $httpResponse,
-            $decodedBody['ip'],
-            (isset($decodedBody['city'])) ? $decodedBody['city'] : '',
-            (isset($decodedBody['region'])) ? $decodedBody['region'] : '',
-            (isset($decodedBody['country'])) ? $decodedBody['country'] : '',
-            (isset($decodedBody['postal'])) ? $decodedBody['postal'] : '',
+            $locationData['ip'],
+            (isset($locationData['city'])) ? $locationData['city'] : '',
+            (isset($locationData['region'])) ? $locationData['region'] : '',
+            (isset($locationData['country'])) ? $locationData['country'] : '',
+            (isset($locationData['postal'])) ? $locationData['postal'] : '',
             $latitude,
             $longitude
         );
