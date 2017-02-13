@@ -67,13 +67,13 @@ class Response implements GeoResponseInterface
     public function __construct(HttpResponseInterface $httpResponse, $ip = '', $city = '', $region = '', $country = '', $postal = '', $latitude = '', $longitude = '')
     {
         $this->httpResponse = $httpResponse;
-        $this->ip = $ip;
-        $this->city = $city;
-        $this->region = $region;
-        $this->country = $country;
-        $this->postal = $postal;
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
+        $this->ip = (string) $ip;
+        $this->city = (string) $city;
+        $this->region = (string) $region;
+        $this->country = (string) $country;
+        $this->postal = (string) $postal;
+        $this->latitude = (string) $latitude;
+        $this->longitude = (string) $longitude;
     }
 
     /**
