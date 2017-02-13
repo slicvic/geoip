@@ -7,7 +7,7 @@ use Slicvic\Geoip\Http\Response;
 
 class ResponseTest extends TestCase
 {
-    public function testConstructorAndGetters()
+    public function testConstructor()
     {
         // Test default parameters
         $response = new Response();
@@ -21,7 +21,7 @@ class ResponseTest extends TestCase
         $this->assertSame(200, $response->getStatusCode());
         $this->assertSame([], $response->getHeaders());
 
-        // Test default headers and that status code is cast to integer
+        // Test default headers and test that status code is cast to integer
         $response = new Response('He can speak Russian… in French', "301");
         $this->assertSame('He can speak Russian… in French', $response->getBody());
         $this->assertSame(301, $response->getStatusCode());

@@ -15,7 +15,7 @@ class CurlTest extends TestCase
         $this->curl = new Curl();
     }
 
-    public function testGet200()
+    public function testGetRespondsWith200()
     {
         $response = $this->curl->get('http://www.example.com/');
         $this->assertInstanceOf(Response::class, $response);
@@ -23,17 +23,17 @@ class CurlTest extends TestCase
         $this->assertContains('This domain is established to be used for illustrative examples in documents.', $response->getBody());
     }
 
-    public function testGet404()
+    public function testGetRespondsWith404()
     {
-        $response = $this->curl->get('http://www.example.com/space%20here.html');
+        $response = $this->curl->get('http://www.iana.org/omains');
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(404, $response->getStatusCode());
-        $this->assertContains('404 - Not Found', $response->getBody());
+        $this->assertContains('This page does not exist', $response->getBody());
     }
 
-    public function testGetInvalidUrl()
+    public function testGetWithInvalidUrl()
     {
-        $response = $this->curl->get('http//www.example.com/');
+        $response = $this->curl->get('http/www.example.com/');
         $this->assertInstanceOf(Response::class, $response);
         $this->assertSame(0, $response->getStatusCode());
         $this->assertSame('', $response->getBody());

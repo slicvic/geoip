@@ -8,7 +8,7 @@ use Slicvic\Geoip\Geolocation\Response as GeoResponse;
 
 class ResponseTest extends TestCase
 {
-    public function testConstructorAndGetters()
+    public function testConstructor()
     {
         $ip = '127.0.0.1';
         $city = 'Miami';
@@ -46,7 +46,7 @@ class ResponseTest extends TestCase
         $this->assertSame($longitude, $response->getLongitude());
     }
 
-    public function testCreate()
+    public function testFactoryMethod()
     {
         $ip = '127.0.0.1';
         $city = 'Miami';
