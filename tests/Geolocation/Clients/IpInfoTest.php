@@ -1,21 +1,21 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Unit\Geolocation\Clients\IpInfo;
+namespace Slicvic\Geoip\Test\Geolocation\Clients;
 
 use PHPUnit\Framework\TestCase;
-use Slicvic\Geoip\Geolocation\Clients\FreeGeoIp;
+use Slicvic\Geoip\Geolocation\Clients\IpInfo;
 use Slicvic\Geoip\Geolocation\Response as GeoResponse;
 
 use Slicvic\Geoip\Http\Clients\Curl;
 
-class FreeGeoIpTest extends TestCase
+class IpInfoTest extends TestCase
 {
     protected $ipinfo;
 
     public function setUp()
     {
         $httpClient = new Curl();
-        $this->freegeoip = new FreeGeoIp($httpClient);
+        $this->ipinfo = new IpInfo($httpClient);
     }
 
     public function locateDataProvider()
@@ -29,7 +29,7 @@ class FreeGeoIpTest extends TestCase
                     'region' => 'California',
                     'country' => 'US',
                     'postal' => '94035',
-                    'latitude' => '37.386',
+                    'latitude' => '37.3860',
                     'longitude' => '-122.0838'
                 ]
             ],
@@ -42,7 +42,7 @@ class FreeGeoIpTest extends TestCase
                     'country' => 'US',
                     'postal' => '20171',
                     'latitude' => '38.9266',
-                    'longitude' => '-77.3937'
+                    'longitude' => '-77.3936'
                 ]
             ],
             [ // Yandex.DNS
@@ -77,7 +77,7 @@ class FreeGeoIpTest extends TestCase
      */
     public function testLocate($ip, array $expected)
     {
-        $response = $this->freegeoip->locate($ip);
+        $response = $this->ipinfo->locate($ip);
 
         $this->assertInstanceOf(GeoResponse::class, $response);
         $this->assertSame($expected['http_code'], $response->getHttpResponse()->getStatusCode());

@@ -1,6 +1,6 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Unit\Http\Clients;
+namespace Slicvic\Geoip\Test\Http\Clients;
 
 use PHPUnit\Framework\TestCase;
 use Slicvic\Geoip\Http\Clients\Curl;

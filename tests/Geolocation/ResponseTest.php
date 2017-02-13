@@ -1,6 +1,6 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Unit\Geolocation;
+namespace Slicvic\Geoip\Test\Geolocation;
 
 use PHPUnit\Framework\TestCase;
 use Slicvic\Geoip\Http\Response as HttpResponse;
