@@ -24,7 +24,7 @@ class IpInfoTest extends TestCase
             [ // Google DNS
                 '8.8.8.8',
                 [
-                    'httpCode' => 200,
+                    'http_code' => 200,
                     'city' => 'Mountain View',
                     'region' => 'California',
                     'country' => 'US',
@@ -36,7 +36,7 @@ class IpInfoTest extends TestCase
             [ // DNS Advantage
                 '156.154.70.1',
                 [
-                    'httpCode' => 200,
+                    'http_code' => 200,
                     'city' => 'Herndon',
                     'region' => 'Virginia',
                     'country' => 'US',
@@ -48,7 +48,7 @@ class IpInfoTest extends TestCase
             [ // Yandex.DNS
                 '77.88.8.8',
                 [
-                    'httpCode' => 200,
+                    'http_code' => 200,
                     'city' => 'Saint Petersburg',
                     'region' => 'St.-Petersburg',
                     'country' => 'RU',
@@ -60,7 +60,7 @@ class IpInfoTest extends TestCase
             [ // Invalid IP
                 '0',
                 [
-                    'httpCode' => 404,
+                    'http_code' => 404,
                     'city' => '',
                     'region' => '',
                     'country' => '',
@@ -80,7 +80,7 @@ class IpInfoTest extends TestCase
         $response = $this->ipinfo->locate($ip);
 
         $this->assertInstanceOf(GeoResponse::class, $response);
-        $this->assertSame($expected['httpCode'], $response->getHttpResponse()->getStatusCode());
+        $this->assertSame($expected['http_code'], $response->getHttpResponse()->getStatusCode());
         $this->assertSame($ip, $response->getIp());
         $this->assertSame($expected['city'], $response->getCity());
         $this->assertSame($expected['region'], $response->getRegion());
