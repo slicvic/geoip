@@ -35,7 +35,7 @@ class GeoipTest extends TestCase
         $this->geoip = new Geoip();
         $this->assertInstanceOf(IpInfo::class, $this->geoip->getLocator());
 
-        // Test with mocked parameter
+        // Test with mocked parameters
         $locatorStub = $this->getMockBuilder(LocatorInterface::class)
             ->getMock();
         $locatorStub->method('locate')
@@ -82,6 +82,7 @@ class GeoipTest extends TestCase
     public function testLocateWithDefaultLocator()
     {
         $ip = '8.8.8.8';
+        $this->geoip = new Geoip();
         $response = $this->geoip->locate($ip);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -99,8 +100,25 @@ class GeoipTest extends TestCase
     {
         $ip = '8.8.8.8';
         $httpClient = new Curl();
-        $geoClient = new FreeGeoIp($httpClient);
-        $this->geoip->setLocator($geoClient);
+        $locatorClient = new FreeGeoIp($httpClient);
+
+        // Test constructor injection
+        $this->geoip = new Geoip($locatorClient);
+        $response = $this->geoip->locate($ip);
+
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame(200, $response->getHttpResponse()->getStatusCode());
+        $this->assertSame($ip, $response->getIp());
+        $this->assertSame('Mountain View', $response->getCity());
+        $this->assertSame('California', $response->getRegion());
+        $this->assertSame('US', $response->getCountry());
+        $this->assertSame('94035', $response->getPostal());
+        $this->assertSame('37.386', $response->getLatitude());
+        $this->assertSame('-122.0838', $response->getLongitude());
+
+        // Test setter injection
+        $this->geoip = new Geoip();
+        $this->geoip->setLocator($locatorClient);
         $response = $this->geoip->locate($ip);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
