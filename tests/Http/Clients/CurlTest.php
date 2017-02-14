@@ -31,11 +31,13 @@ class CurlTest extends TestCase
         $this->assertContains('This page does not exist', $response->getBody());
     }
 
-    public function testGetWithInvalidUrl()
+    /**
+     * @expectedException \Slicvic\Geoip\Exceptions\CurlErrorException
+     * @expectedExceptionCode 6
+     * @expectedExceptionMessage Couldn't resolve host name
+     */
+    public function testGetThrowsCurlErrorException()
     {
         $response = $this->curl->get('http/www.example.com/');
-        $this->assertInstanceOf(Response::class, $response);
-        $this->assertSame(0, $response->getStatusCode());
-        $this->assertSame('', $response->getBody());
     }
 }
