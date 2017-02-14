@@ -38,6 +38,6 @@ class CurlTest extends TestCase
      */
     public function testGetThrowsCurlErrorException()
     {
-        $response = $this->curl->get('http/www.example.com/');
+        $this->curl->get('http/www.example.com/');
     }
 }
