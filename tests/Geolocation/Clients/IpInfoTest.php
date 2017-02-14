@@ -3,19 +3,18 @@
 namespace Slicvic\Geoip\Test\Geolocation\Clients;
 
 use PHPUnit\Framework\TestCase;
+use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface;
 use Slicvic\Geoip\Geolocation\Clients\IpInfo;
-use Slicvic\Geoip\Geolocation\Response as GeoResponse;
-
 use Slicvic\Geoip\Http\Clients\Curl;
 
 class IpInfoTest extends TestCase
 {
-    protected $ipinfo;
+    protected $client;
 
     public function setUp()
     {
         $httpClient = new Curl();
-        $this->ipinfo = new IpInfo($httpClient);
+        $this->client = new IpInfo($httpClient);
     }
 
     public function locateDataProvider()
@@ -24,7 +23,7 @@ class IpInfoTest extends TestCase
             [ // Google DNS
                 '8.8.8.8',
                 [
-                    'http_code' => 200,
+                    'status' => 200,
                     'city' => 'Mountain View',
                     'region' => 'California',
                     'country' => 'US',
@@ -36,7 +35,7 @@ class IpInfoTest extends TestCase
             [ // DNS Advantage
                 '156.154.70.1',
                 [
-                    'http_code' => 200,
+                    'status' => 200,
                     'city' => 'Herndon',
                     'region' => 'Virginia',
                     'country' => 'US',
@@ -48,7 +47,7 @@ class IpInfoTest extends TestCase
             [ // Yandex.DNS
                 '77.88.8.8',
                 [
-                    'http_code' => 200,
+                    'status' => 200,
                     'city' => 'Saint Petersburg',
                     'region' => 'St.-Petersburg',
                     'country' => 'RU',
@@ -60,7 +59,7 @@ class IpInfoTest extends TestCase
             [ // Invalid IP
                 '0',
                 [
-                    'http_code' => 404,
+                    'status' => 404,
                     'city' => '',
                     'region' => '',
                     'country' => '',
@@ -77,10 +76,10 @@ class IpInfoTest extends TestCase
      */
     public function testLocate($ip, array $expected)
     {
-        $response = $this->ipinfo->locate($ip);
+        $response = $this->client->locate($ip);
 
-        $this->assertInstanceOf(GeoResponse::class, $response);
-        $this->assertSame($expected['http_code'], $response->getHttpResponse()->getStatusCode());
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertSame($expected['status'], $response->getHttpResponse()->getStatusCode());
         $this->assertSame($ip, $response->getIp());
         $this->assertSame($expected['city'], $response->getCity());
         $this->assertSame($expected['region'], $response->getRegion());

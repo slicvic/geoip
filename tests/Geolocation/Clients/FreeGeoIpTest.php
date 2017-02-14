@@ -2,20 +2,15 @@
 
 namespace Slicvic\Geoip\Test\Geolocation\Clients;
 
-use PHPUnit\Framework\TestCase;
 use Slicvic\Geoip\Geolocation\Clients\FreeGeoIp;
-use Slicvic\Geoip\Geolocation\Response as GeoResponse;
-
 use Slicvic\Geoip\Http\Clients\Curl;
 
-class FreeGeoIpTest extends TestCase
+class FreeGeoIpTest extends IpInfoTest
 {
-    protected $ipinfo;
-
     public function setUp()
     {
         $httpClient = new Curl();
-        $this->freegeoip = new FreeGeoIp($httpClient);
+        $this->client = new FreeGeoIp($httpClient);
     }
 
     public function locateDataProvider()
@@ -24,7 +19,7 @@ class FreeGeoIpTest extends TestCase
             [ // Google DNS
                 '8.8.8.8',
                 [
-                    'http_code' => 200,
+                    'status' => 200,
                     'city' => 'Mountain View',
                     'region' => 'California',
                     'country' => 'US',
@@ -36,7 +31,7 @@ class FreeGeoIpTest extends TestCase
             [ // DNS Advantage
                 '156.154.70.1',
                 [
-                    'http_code' => 200,
+                    'status' => 200,
                     'city' => 'Herndon',
                     'region' => 'Virginia',
                     'country' => 'US',
@@ -48,7 +43,7 @@ class FreeGeoIpTest extends TestCase
             [ // Yandex.DNS
                 '77.88.8.8',
                 [
-                    'http_code' => 200,
+                    'status' => 200,
                     'city' => 'Saint Petersburg',
                     'region' => 'St.-Petersburg',
                     'country' => 'RU',
@@ -60,7 +55,7 @@ class FreeGeoIpTest extends TestCase
             [ // Invalid IP
                 '0',
                 [
-                    'http_code' => 404,
+                    'status' => 404,
                     'city' => '',
                     'region' => '',
                     'country' => '',
@@ -70,23 +65,5 @@ class FreeGeoIpTest extends TestCase
                 ]
             ],
         ];
-    }
-
-    /**
-     * @dataProvider locateDataProvider
-     */
-    public function testLocate($ip, array $expected)
-    {
-        $response = $this->freegeoip->locate($ip);
-
-        $this->assertInstanceOf(GeoResponse::class, $response);
-        $this->assertSame($expected['http_code'], $response->getHttpResponse()->getStatusCode());
-        $this->assertSame($ip, $response->getIp());
-        $this->assertSame($expected['city'], $response->getCity());
-        $this->assertSame($expected['region'], $response->getRegion());
-        $this->assertSame($expected['country'], $response->getCountry());
-        $this->assertSame($expected['postal'], $response->getPostal());
-        $this->assertSame($expected['latitude'], $response->getLatitude());
-        $this->assertSame($expected['longitude'], $response->getLongitude());
     }
 }
