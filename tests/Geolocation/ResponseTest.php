@@ -12,7 +12,7 @@ class ResponseTest extends TestCase
     {
         $ip = '127.0.0.1';
         $city = 'Miami';
-        $region = 'Flordia';
+        $region = 'Florida';
         $country = 'USA';
         $postal = '33012';
         $latitude = '25.761680';
@@ -46,11 +46,11 @@ class ResponseTest extends TestCase
         $this->assertSame($longitude, $response->getLongitude());
     }
 
-    public function testFactoryMethod()
+    public function testFactory()
     {
         $ip = '127.0.0.1';
         $city = 'Miami';
-        $region = 'Flordia';
+        $region = 'Florida';
         $country = 'USA';
         $postal = '33012';
         $latitude = '25.761680';
