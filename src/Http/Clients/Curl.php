@@ -3,6 +3,7 @@
 namespace Slicvic\Geoip\Http\Clients;
 
 use Slicvic\Geoip\Http\Response;
+use Slicvic\Geoip\Exceptions\CurlErrorException;
 
 /**
  * A cURL HTTP client.
@@ -13,6 +14,8 @@ class Curl extends AbstractClient
 {
     /**
      * {@inheritdoc}
+     *
+     * @throws CurlErrorException
      */
     public function get($url, array $params = [], array $headers = [])
     {
@@ -22,6 +25,9 @@ class Curl extends AbstractClient
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
         $body = curl_exec($curlHandle);
         $headers = curl_getinfo($curlHandle);
+        if ($curlErrno = curl_errno($curlHandle)) {
+            throw new CurlErrorException(curl_strerror($curlErrno), $curlErrno);
+        }
         curl_close($curlHandle);
         $response = new Response($body, $headers['http_code'], $headers);
         return $response;
