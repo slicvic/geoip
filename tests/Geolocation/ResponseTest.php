@@ -23,7 +23,7 @@ class ResponseTest extends TestCase
             ['content_type' => 'text/html']
         );
 
-        // Test default parameters
+        // Test with default parameters
         $response = new GeoResponse($httpResponse);
         $this->assertSame($httpResponse, $response->getHttpResponse());
         $this->assertSame('', $response->getIp());
@@ -34,7 +34,7 @@ class ResponseTest extends TestCase
         $this->assertSame('', $response->getLatitude());
         $this->assertSame('', $response->getLongitude());
 
-        // Test actual parameters
+        // Test with actual parameters
         $response = new GeoResponse($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude);
         $this->assertSame($httpResponse, $response->getHttpResponse());
         $this->assertSame($ip, $response->getIp());
@@ -61,7 +61,7 @@ class ResponseTest extends TestCase
             ['content_type' => 'text/html']
         );
 
-        // Test default parameters
+        // Test with default parameters
         $response = GeoResponse::create($httpResponse);
         $this->assertSame($httpResponse, $response->getHttpResponse());
         $this->assertSame('', $response->getIp());
@@ -72,7 +72,7 @@ class ResponseTest extends TestCase
         $this->assertSame('', $response->getLatitude());
         $this->assertSame('', $response->getLongitude());
 
-        // Test actual parameters
+        // Test with actual parameters
         $response = GeoResponse::create($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude);
         $this->assertInstanceOf(GeoResponse::class, $response);
         $this->assertSame($httpResponse, $response->getHttpResponse());
