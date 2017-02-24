@@ -33,8 +33,8 @@ $response = $geoip->locate('8.8.8.8');
 $city = $response->getCity();
 $region = $response->getRegion();
 $state = $response->getState();
-$country = $response->getCountry();
 $postal = $response->getPostal();
+$country = $response->getCountry();
 $latitude = $response->getLatitude();
 $longitude = $response->getLongitude();
 ```
