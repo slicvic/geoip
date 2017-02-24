@@ -1,5 +1,5 @@
 # GeoIP
-A library for finding the location of an IP address
+A library for finding the location of an IP address.
 
 # Install
 You can install the library using [composer](https://getcomposer.org/). Add these lines in your composer.json:
@@ -23,7 +23,7 @@ You can install the library using [composer](https://getcomposer.org/). Add thes
 ```php
 $geoip = new \Slicvic\Geoip\Geoip();
 
-// @var $response \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface
+// @var \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface
 $response = $geoip->locate('8.8.8.8');
 ```
 
@@ -37,7 +37,4 @@ $country = $response->getCountry();
 $postal = $response->getPostal();
 $latitude = $response->getLatitude();
 $longitude = $response->getLongitude();
-
-//Get only a single property (this could save bandwidth)
-$city = $ipInfo->getSpecificField("8.8.8.8", DavidePastore\Ipinfo\Ipinfo::CITY);
 ```
