@@ -23,7 +23,7 @@ class GuzzleAdapter extends AbstractClient
      */
     public function __construct()
     {
-        $this->client = new GuzzleHttpClient;
+        $this->client = new GuzzleHttpClient();
     }
 
     /**
