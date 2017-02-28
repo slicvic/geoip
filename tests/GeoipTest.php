@@ -22,9 +22,9 @@ class GeoipTest extends TestCase
     /**
      * @expectedException \TypeError
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::__construct() must implement interface Slicvic\Geoip\Contracts\Geolocation\LocatorInterface or be null
+     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::__construct() must implement interface Slicvic\Geoip\Contracts\Geolocation\LocatorInterface
      */
-    public function testConstructorExpectsLocatorInterfaceOrNull()
+    public function testConstructorExpectsLocatorInterface()
     {
         new Geoip(new \stdClass());
     }
