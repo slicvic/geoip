@@ -20,15 +20,14 @@ class Curl extends AbstractClient
     public function get($url, array $params = [], array $headers = [])
     {
         $queryString = (count($params)) ? '?' . http_build_query($params) : '';
-        $curlHandle = curl_init();
-        curl_setopt($curlHandle, CURLOPT_URL, $url . $queryString);
-        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-        $body = curl_exec($curlHandle);
-        $headers = curl_getinfo($curlHandle);
-        if ($curlErrno = curl_errno($curlHandle)) {
+        $curl = curl_init($url . $queryString);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $body = curl_exec($curl);
+        $headers = curl_getinfo($curl);
+        if ($curlErrno = curl_errno($curl)) {
             throw new CurlErrorException(curl_strerror($curlErrno), $curlErrno);
         }
-        curl_close($curlHandle);
+        curl_close($curl);
         $response = new Response($body, $headers['http_code'], $headers);
         return $response;
     }
