@@ -7,7 +7,7 @@ use Slicvic\Geoip\Exceptions\CurlErrorException;
 use GuzzleHttp\Client as GuzzleHttpClient;
 
 /**
- * An adapter for Guzzle HTTP client.
+ * Adapter for Guzzle HTTP client.
  *
  * @package Slicvic\Geoip\Http\Clients
  */
@@ -42,7 +42,7 @@ class GuzzleAdapter extends AbstractClient
      */
     public function post($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement method.
+        //
     }
 
     /**
@@ -50,7 +50,7 @@ class GuzzleAdapter extends AbstractClient
      */
     public function put($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement method.
+        //
     }
 
     /**
@@ -58,6 +58,6 @@ class GuzzleAdapter extends AbstractClient
      */
     public function delete($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement method.
+        //
     }
 }
