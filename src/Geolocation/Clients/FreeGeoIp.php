@@ -22,17 +22,17 @@ class FreeGeoIp extends AbstractClient
             return GeoResponse::create($httpResponse, $ip);
         }
 
-        $locationData = json_decode($httpResponse->getBody(), true);
+        $locationInfo = json_decode($httpResponse->getBody(), true);
 
         return GeoResponse::create(
             $httpResponse,
-            $locationData['ip'],
-            $locationData['city'],
-            $locationData['region_name'],
-            $locationData['country_code'],
-            $locationData['zip_code'],
-            $locationData['latitude'],
-            $locationData['longitude']
+            $locationInfo['ip'],
+            $locationInfo['city'],
+            $locationInfo['region_name'],
+            $locationInfo['country_code'],
+            $locationInfo['zip_code'],
+            $locationInfo['latitude'],
+            $locationInfo['longitude']
         );
     }
 }
