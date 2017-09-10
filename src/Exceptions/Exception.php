@@ -3,7 +3,7 @@
 namespace Slicvic\Geoip\Exceptions;
 
 /**
- * Base exception class.
+ * General exception.
  *
  * @package Slicvic\Geoip\Exceptions
  */

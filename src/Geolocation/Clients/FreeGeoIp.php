@@ -5,7 +5,7 @@ namespace Slicvic\Geoip\Geolocation\Clients;
 use Slicvic\Geoip\Geolocation\Response as GeoResponse;
 
 /**
- * Client for https://freegeoip.net/ IP geolocation API.
+ * Client for FreeGeoIP.net
  */
 class FreeGeoIp extends AbstractClient
 {

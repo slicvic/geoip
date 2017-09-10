@@ -3,7 +3,7 @@
 namespace Slicvic\Geoip\Contracts\Geolocation;
 
 /**
- * Interface for Geolocation clients.
+ * Interface for geolocation clients.
  *
  * @package Slicvic\Geoip\Contracts\Geolocation
  */

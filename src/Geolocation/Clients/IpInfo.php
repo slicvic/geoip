@@ -5,7 +5,7 @@ namespace Slicvic\Geoip\Geolocation\Clients;
 use Slicvic\Geoip\Geolocation\Response as GeoResponse;
 
 /**
- * Client for http://ipinfo.io IP geolocation API.
+ * Client for IpInfo.io
  */
 class IpInfo extends AbstractClient
 {

@@ -6,7 +6,7 @@ use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface as GeoResponseInterfac
 use Slicvic\Geoip\Contracts\Http\ResponseInterface as HttpResponseInterface;
 
 /**
- * A Geolocation response.
+ * Response returned by geolocation clients.
  *
  * @package Slicvic\Geoip\Geolocation
  */

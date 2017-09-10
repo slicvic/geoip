@@ -6,7 +6,7 @@ use Slicvic\Geoip\Http\Response;
 use Slicvic\Geoip\Exceptions\CurlErrorException;
 
 /**
- * A cURL HTTP client.
+ * cURL HTTP client.
  *
  * @package Slicvic\Geoip\Http\Clients
  */
@@ -38,7 +38,7 @@ class Curl extends AbstractClient
      */
     public function post($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement method.
+        //
     }
 
     /**
@@ -46,7 +46,7 @@ class Curl extends AbstractClient
      */
     public function put($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement method.
+        //
     }
 
     /**
@@ -54,6 +54,6 @@ class Curl extends AbstractClient
      */
     public function delete($url, array $params = [], array $headers = [])
     {
-        // TODO: Implement method.
+        //
     }
 }

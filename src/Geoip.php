@@ -9,8 +9,6 @@ use Slicvic\Geoip\Geolocation\Clients\IpInfo;
 use Slicvic\Geoip\Http\Clients\Curl;
 
 /**
- * Class Geoip
- *
  * @package Slicvic\Geoip
  */
 class Geoip
@@ -23,7 +21,7 @@ class Geoip
     /**
      * Constructor.
      *
-     * @param LocatorInterface|null $locator
+     * @param LocatorInterface|null $locator Defaults to IpInfo.
      */
     public function __construct(LocatorInterface $locator = null)
     {

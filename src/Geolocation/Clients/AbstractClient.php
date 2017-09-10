@@ -6,7 +6,7 @@ use Slicvic\Geoip\Contracts\Geolocation\LocatorInterface;
 use Slicvic\Geoip\Contracts\Http\RestInterface;
 
 /**
- * Abstract class for Geolocation clients.
+ * Base class for geolocation clients.
  */
 abstract class AbstractClient implements LocatorInterface
 {

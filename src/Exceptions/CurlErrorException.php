@@ -3,7 +3,7 @@
 namespace Slicvic\Geoip\Exceptions;
 
 /**
- * cURL error exception.
+ * Exception thrown by cURL HTTP client.
  *
  * @package Slicvic\Geoip\Exceptions
  */
