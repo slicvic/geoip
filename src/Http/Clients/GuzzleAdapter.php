@@ -4,32 +4,37 @@ namespace Slicvic\Geoip\Http\Clients;
 
 use Slicvic\Geoip\Http\Response;
 use Slicvic\Geoip\Exceptions\CurlErrorException;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 /**
- * cURL HTTP client.
+ * An adapter for Guzzle HTTP client.
  *
  * @package Slicvic\Geoip\Http\Clients
  */
-class Curl extends AbstractClient
+class GuzzleAdapter extends AbstractClient
 {
     /**
+     * @var GuzzleHttpClient
+     */
+    protected $client;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->client = new GuzzleHttpClient();
+    }
+
+    /**
      * {@inheritdoc}
-     *
-     * @throws CurlErrorException
      */
     public function get($url, array $params = [], array $headers = [])
     {
         $queryString = (count($params)) ? '?' . http_build_query($params) : '';
-        $curl = curl_init($url . $queryString);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $body = curl_exec($curl);
-        $headers = curl_getinfo($curl);
-        if ($curlErrno = curl_errno($curl)) {
-            throw new CurlErrorException(curl_strerror($curlErrno), $curlErrno);
-        }
-        curl_close($curl);
-        $response = new Response($body, $headers['http_code'], $headers);
-        return $response;
+        $httpResponse = $this->client->request('GET', $url . $queryString);
+        $geoResponse = new Response($httpResponse->getBody(), $httpResponse->getStatusCode(), $httpResponse->getHeaders());
+        return $geoResponse;
     }
 
     /**
@@ -37,7 +42,7 @@ class Curl extends AbstractClient
      */
     public function post($url, array $params = [], array $headers = [])
     {
-        //
+        // TODO: Implement method.
     }
 
     /**
@@ -45,7 +50,7 @@ class Curl extends AbstractClient
      */
     public function put($url, array $params = [], array $headers = [])
     {
-        //
+        // TODO: Implement method.
     }
 
     /**
@@ -53,6 +58,6 @@ class Curl extends AbstractClient
      */
     public function delete($url, array $params = [], array $headers = [])
     {
-        //
+        // TODO: Implement method.
     }
 }

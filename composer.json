@@ -1,6 +1,6 @@
 {
     "name": "slicvic/geoip",
-    "description": "Easy to use library for finding location by IP address",
+    "description": "Easy to use library for finding location of an IP address",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,7 +9,9 @@
             "email": "vmlantigua@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
     "require-dev": {
         "phpunit/phpunit": "^6.0"
     },
