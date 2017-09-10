@@ -65,7 +65,7 @@ class GeoipTest extends TestCase
     }
 
     /**
-     * @expectedException \Slicvic\Geoip\Exceptions\InvalidResponseException
+     * @expectedException \Slicvic\Geoip\Exceptions\Exception
      * @expectedExceptionCode 0
      * @expectedExceptionMessage Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface
      */

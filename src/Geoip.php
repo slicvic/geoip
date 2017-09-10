@@ -4,7 +4,7 @@ namespace Slicvic\Geoip;
 
 use Slicvic\Geoip\Contracts\Geolocation\LocatorInterface;
 use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface;
-use Slicvic\Geoip\Exceptions\InvalidResponseException;
+use Slicvic\Geoip\Exceptions\Exception;
 use Slicvic\Geoip\Geolocation\Clients\IpInfo;
 use Slicvic\Geoip\Http\Clients\Curl;
 
@@ -35,13 +35,13 @@ class Geoip
      *
      * @param  string $ip
      * @return ResponseInterface
-     * @throws InvalidResponseException
+     * @throws Exception
      */
     public function locate($ip)
     {
         $response = $this->locator->locate($ip);
         if (!($response instanceof ResponseInterface)) {
-            throw new InvalidResponseException('Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface');
+            throw new Exception('Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface');
         }
         return $response;
     }
