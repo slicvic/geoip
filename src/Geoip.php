@@ -14,6 +14,8 @@ use Slicvic\Geoip\Http\Clients\Curl;
 class Geoip
 {
     /**
+     * The location service (i.e. IpInfo and FreeGeoIp).
+     *
      * @var LocatorInterface
      */
     protected $locator;
@@ -21,7 +23,7 @@ class Geoip
     /**
      * Constructor.
      *
-     * @param LocatorInterface|null $locator Defaults to IpInfo.
+     * @param LocatorInterface|null $locator Defaults to IpInfo
      */
     public function __construct(LocatorInterface $locator = null)
     {
