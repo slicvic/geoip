@@ -14,7 +14,7 @@ use Slicvic\Geoip\Http\Clients\Curl;
 class Geoip
 {
     /**
-     * A location service (i.e. IpInfo and FreeGeoIp).
+     * The service for geolocation (i.e. IpInfo and FreeGeoIp).
      *
      * @var LocatorInterface
      */
