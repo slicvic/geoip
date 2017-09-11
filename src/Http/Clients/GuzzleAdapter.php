@@ -16,14 +16,14 @@ class GuzzleAdapter extends AbstractClient
     /**
      * @var GuzzleHttpClient
      */
-    protected $client;
+    protected $httpClient;
 
     /**
      * Constructor.
      */
     public function __construct()
     {
-        $this->client = new GuzzleHttpClient();
+        $this->httpClient = new GuzzleHttpClient();
     }
 
     /**
@@ -32,7 +32,7 @@ class GuzzleAdapter extends AbstractClient
     public function get($url, array $params = [], array $headers = [])
     {
         $queryString = (count($params)) ? '?' . http_build_query($params) : '';
-        $httpResponse = $this->client->request('GET', $url . $queryString);
+        $httpResponse = $this->httpClient->request('GET', $url . $queryString);
         $geoResponse = new Response($httpResponse->getBody(), $httpResponse->getStatusCode(), $httpResponse->getHeaders());
         return $geoResponse;
     }
