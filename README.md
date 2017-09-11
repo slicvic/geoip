@@ -1,5 +1,5 @@
 # GeoIP
-A library for finding the location of an IP address.
+A library for finding the location of an IP address, such as city, state, postal code, country, latitude, and longitude.
 
 # Install
 You can install the library using [composer](https://getcomposer.org/). Add these lines in your composer.json:
