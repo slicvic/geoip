@@ -1,6 +1,6 @@
 {
     "name": "slicvic/geoip",
-    "description": "Easy to use library for finding the location of an IP address",
+    "description": "A small, easy-to-use library to find the geographic location of an IP address",
     "type": "library",
     "license": "MIT",
     "authors": [
