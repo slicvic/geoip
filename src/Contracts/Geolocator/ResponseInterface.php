@@ -1,11 +1,11 @@
 <?php
 
-namespace Slicvic\Geoip\Contracts\Geolocation;
+namespace Slicvic\Geoip\Contracts\Geolocator;
 
 /**
- * Interface for geolocation responses.
+ * Interface for geolocator response.
  *
- * @package Slicvic\Geoip\Contracts\Geolocation
+ * @package Slicvic\Geoip\Contracts\Geolocator
  */
 interface ResponseInterface
 {

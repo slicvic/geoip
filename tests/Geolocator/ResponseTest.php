@@ -1,10 +1,10 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Geolocation;
+namespace Slicvic\Geoip\Test\Geolocator;
 
 use PHPUnit\Framework\TestCase;
 use Slicvic\Geoip\Http\Response as HttpResponse;
-use Slicvic\Geoip\Geolocation\Response as GeoResponse;
+use Slicvic\Geoip\Geolocator\Response as GeoResponse;
 
 class ResponseTest extends TestCase
 {

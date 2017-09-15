@@ -1,13 +1,13 @@
 <?php
 
-namespace Slicvic\Geoip\Geolocation\Clients;
+namespace Slicvic\Geoip\Geolocator;
 
-use Slicvic\Geoip\Geolocation\Response as GeoResponse;
+use Slicvic\Geoip\Geolocator\Response as GeoResponse;
 
 /**
- * Client for FreeGeoIP.net
+ * FreeGeoIP.net geolocation service.
  */
-class FreeGeoIp extends AbstractClient
+class FreeGeoIp extends AbstractLocator
 {
     const API_URL = 'http://freegeoip.net/json';
 

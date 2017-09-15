@@ -1,14 +1,14 @@
 <?php
 
-namespace Slicvic\Geoip\Geolocation\Clients;
+namespace Slicvic\Geoip\Geolocator;
 
-use Slicvic\Geoip\Contracts\Geolocation\LocatorInterface;
+use Slicvic\Geoip\Contracts\Geolocator\LocatorInterface;
 use Slicvic\Geoip\Contracts\Http\RestInterface;
 
 /**
- * Base class for geolocation clients.
+ * Base class for geolocation services.
  */
-abstract class AbstractClient implements LocatorInterface
+abstract class AbstractLocator implements LocatorInterface
 {
     /**
      * @var RestInterface

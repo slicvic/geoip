@@ -3,11 +3,11 @@
 namespace Slicvic\Geoip\Test;
 
 use PHPUnit\Framework\TestCase;
-use Slicvic\Geoip\Contracts\Geolocation\LocatorInterface;
-use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface;
+use Slicvic\Geoip\Contracts\Geolocator\LocatorInterface;
+use Slicvic\Geoip\Contracts\Geolocator\ResponseInterface;
 use Slicvic\Geoip\Geoip;
-use Slicvic\Geoip\Geolocation\Clients\FreeGeoIp;
-use Slicvic\Geoip\Geolocation\Clients\IpInfo;
+use Slicvic\Geoip\Geolocator\FreeGeoIp;
+use Slicvic\Geoip\Geolocator\IpInfo;
 use Slicvic\Geoip\Http\Clients\Curl;
 
 class GeoipTest extends TestCase
@@ -22,7 +22,7 @@ class GeoipTest extends TestCase
     /**
      * @expectedException \TypeError
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::__construct() must implement interface Slicvic\Geoip\Contracts\Geolocation\LocatorInterface
+     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::__construct() must implement interface Slicvic\Geoip\Contracts\Geolocator\LocatorInterface
      */
     public function testConstructorExpectsLocatorInterface()
     {
@@ -47,7 +47,7 @@ class GeoipTest extends TestCase
     /**
      * @expectedException \TypeError
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::setLocator() must implement interface Slicvic\Geoip\Contracts\Geolocation\LocatorInterface
+     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::setLocator() must implement interface Slicvic\Geoip\Contracts\Geolocator\LocatorInterface
      */
     public function testSetLocatorExpectsLocatorInterface()
     {
@@ -67,7 +67,7 @@ class GeoipTest extends TestCase
     /**
      * @expectedException \Slicvic\Geoip\Exceptions\Exception
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface
+     * @expectedExceptionMessage Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocator\ResponseInterface
      */
     public function testLocateThrowsInvalidResponseException()
     {

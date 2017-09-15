@@ -1,14 +1,14 @@
 <?php
 
-namespace Slicvic\Geoip\Geolocation;
+namespace Slicvic\Geoip\Geolocator;
 
-use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface as GeoResponseInterface;
+use Slicvic\Geoip\Contracts\Geolocator\ResponseInterface as GeoResponseInterface;
 use Slicvic\Geoip\Contracts\Http\ResponseInterface as HttpResponseInterface;
 
 /**
- * Response returned by geolocation clients.
+ * Response returned by geolocation services.
  *
- * @package Slicvic\Geoip\Geolocation
+ * @package Slicvic\Geoip\Geolocator
  */
 class Response implements GeoResponseInterface
 {

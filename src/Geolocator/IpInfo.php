@@ -1,13 +1,13 @@
 <?php
 
-namespace Slicvic\Geoip\Geolocation\Clients;
+namespace Slicvic\Geoip\Geolocator;
 
-use Slicvic\Geoip\Geolocation\Response as GeoResponse;
+use Slicvic\Geoip\Geolocator\Response as GeoResponse;
 
 /**
- * Client for IpInfo.io
+ * IpInfo.io geolocation service.
  */
-class IpInfo extends AbstractClient
+class IpInfo extends AbstractLocator
 {
     const API_URL = 'http://ipinfo.io';
 

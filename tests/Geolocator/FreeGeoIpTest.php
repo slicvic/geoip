@@ -1,20 +1,16 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Geolocation\Clients;
+namespace Slicvic\Geoip\Test\Geolocator;
 
-use PHPUnit\Framework\TestCase;
-use Slicvic\Geoip\Contracts\Geolocation\ResponseInterface;
-use Slicvic\Geoip\Geolocation\Clients\IpInfo;
+use Slicvic\Geoip\Geolocator\FreeGeoIp;
 use Slicvic\Geoip\Http\Clients\Curl;
 
-class IpInfoTest extends TestCase
+class FreeGeoIpTest extends IpInfoTest
 {
-    protected $client;
-
     public function setUp()
     {
         $httpClient = new Curl();
-        $this->client = new IpInfo($httpClient);
+        $this->client = new FreeGeoIp($httpClient);
     }
 
     public function locateDataProvider()
@@ -28,7 +24,7 @@ class IpInfoTest extends TestCase
                     'region' => 'California',
                     'country' => 'US',
                     'postal' => '94035',
-                    'latitude' => '37.3860',
+                    'latitude' => '37.386',
                     'longitude' => '-122.0838'
                 ]
             ],
@@ -41,7 +37,7 @@ class IpInfoTest extends TestCase
                     'country' => 'US',
                     'postal' => '20171',
                     'latitude' => '38.9266',
-                    'longitude' => '-77.3936'
+                    'longitude' => '-77.3937'
                 ]
             ],
             [ // Yandex.DNS
@@ -69,23 +65,5 @@ class IpInfoTest extends TestCase
                 ]
             ],
         ];
-    }
-
-    /**
-     * @dataProvider locateDataProvider
-     */
-    public function testLocate($ip, array $expected)
-    {
-        $response = $this->client->locate($ip);
-
-        $this->assertInstanceOf(ResponseInterface::class, $response);
-        $this->assertSame($expected['status'], $response->getHttpResponse()->getStatusCode());
-        $this->assertSame($ip, $response->getIp());
-        $this->assertSame($expected['city'], $response->getCity());
-        $this->assertSame($expected['region'], $response->getRegion());
-        $this->assertSame($expected['country'], $response->getCountry());
-        $this->assertSame($expected['postal'], $response->getPostal());
-        $this->assertSame($expected['latitude'], $response->getLatitude());
-        $this->assertSame($expected['longitude'], $response->getLongitude());
     }
 }
