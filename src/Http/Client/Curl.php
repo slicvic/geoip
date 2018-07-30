@@ -19,7 +19,7 @@ class Curl extends AbstractClient
      */
     public function get($url, array $params = [], array $headers = [])
     {
-        $queryString = (count($params)) ? '?' . http_build_query($params) : '';
+        $queryString = count($params) ? '?' . http_build_query($params) : '';
         $curl = curl_init($url . $queryString);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $body = curl_exec($curl);

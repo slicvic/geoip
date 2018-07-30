@@ -28,9 +28,9 @@ class GuzzleAdapter extends AbstractClient
      */
     public function get($url, array $params = [], array $headers = [])
     {
-        $queryString = (count($params)) ? '?' . http_build_query($params) : '';
-        $httpResponse = $this->httpClient->request('GET', $url . $queryString);
-        $geoResponse = new Response($httpResponse->getBody(), $httpResponse->getStatusCode(), $httpResponse->getHeaders());
-        return $geoResponse;
+        $queryString = count($params) ? '?' . http_build_query($params) : '';
+        $guzzleResponse = $this->httpClient->request('GET', $url . $queryString);
+        $response = new Response($guzzleResponse->getBody(), $guzzleResponse->getStatusCode(), $guzzleResponse->getHeaders());
+        return $response;
     }
 }
