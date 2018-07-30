@@ -1,12 +1,13 @@
 <?php
 
-namespace Slicvic\Geoip\Geolocator;
+namespace Slicvic\Geoip\Locator;
 
-use Slicvic\Geoip\Contracts\Geolocator\LocatorInterface;
-use Slicvic\Geoip\Contracts\Http\RestInterface;
+use Slicvic\Geoip\Locator\LocatorInterface;
+use Slicvic\Geoip\Http\RestInterface;
+use Slicvic\Geoip\Http\Client\Curl;
 
 /**
- * Base class for geolocation services.
+ * Abstract locator.
  */
 abstract class AbstractLocator implements LocatorInterface
 {
@@ -16,18 +17,14 @@ abstract class AbstractLocator implements LocatorInterface
     protected $httpClient;
 
     /**
-     * Constructor.
-     *
      * @param RestInterface $httpClient
      */
-    public function __construct(RestInterface $httpClient)
+    public function __construct(RestInterface $httpClient = null)
     {
-        $this->httpClient = $httpClient;
+        $this->httpClient = $httpClient ?: new Curl();
     }
 
     /**
-     * Get HTTP client.
-     *
      * @return RestInterface
      */
     public function getHttpClient()
@@ -36,8 +33,6 @@ abstract class AbstractLocator implements LocatorInterface
     }
 
     /**
-     * Set HTTP client.
-     *
      * @param RestInterface $httpClient
      * @return $this
      */

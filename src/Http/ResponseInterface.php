@@ -1,31 +1,25 @@
 <?php
 
-namespace Slicvic\Geoip\Contracts\Http;
+namespace Slicvic\Geoip\Http;
 
 /**
- * Interface for HTTP response.
+ * HTTP response interface.
  *
- * @package Slicvic\Geoip\Contracts\Http
+ * @package Slicvic\Geoip\Http
  */
 interface ResponseInterface
 {
     /**
-     * Get HTTP status code.
-     *
      * @return int
      */
     public function getStatusCode();
 
     /**
-     * Get response headers.
-     *
      * @return array
      */
     public function getHeaders();
 
     /**
-     * Get response body.
-     *
      * @return string
      */
     public function getBody();

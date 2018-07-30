@@ -1,11 +1,11 @@
 <?php
 
-namespace Slicvic\Geoip\Contracts\Http;
+namespace Slicvic\Geoip\Http;
 
 /**
- * RESTful Interface for HTTP clients.
+ * RESTful HTTP client interface.
  *
- * @package Slicvic\Geoip\Contracts\Http
+ * @package Slicvic\Geoip\Http
  */
 interface RestInterface
 {
@@ -15,7 +15,7 @@ interface RestInterface
      * @param  string $url
      * @param  array  $params
      * @param  array  $headers
-     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
+     * @return \Slicvic\Geoip\Http\ResponseInterface
      */
     public function get($url, array $params = [], array $headers = []);
 
@@ -25,7 +25,7 @@ interface RestInterface
      * @param  string $url
      * @param  array  $params
      * @param  array  $headers
-     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
+     * @return \Slicvic\Geoip\Http\ResponseInterface
      */
     public function post($url, array $params = [], array $headers = []);
 
@@ -35,7 +35,7 @@ interface RestInterface
      * @param  string $url
      * @param  array  $params
      * @param  array  $headers
-     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
+     * @return \Slicvic\Geoip\Http\ResponseInterface
      */
     public function put($url, array $params = [], array $headers = []);
 
@@ -45,7 +45,7 @@ interface RestInterface
      * @param  string $url
      * @param  array  $params
      * @param  array  $headers
-     * @return \Slicvic\Geoip\Contracts\Http\ResponseInterface
+     * @return \Slicvic\Geoip\Http\ResponseInterface
      */
     public function delete($url, array $params = [], array $headers = []);
 }

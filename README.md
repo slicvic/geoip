@@ -23,7 +23,7 @@ You can install the library using [composer](https://getcomposer.org/). Add thes
 ```php
 $geoip = new \Slicvic\Geoip\Geoip();
 
-// @var \Slicvic\Geoip\Contracts\Geolocation\ResponseInterface
+// @var \Slicvic\Geoip\Locator\ResponseInterface
 $response = $geoip->locate('8.8.8.8');
 ```
 

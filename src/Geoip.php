@@ -2,11 +2,10 @@
 
 namespace Slicvic\Geoip;
 
-use Slicvic\Geoip\Contracts\Geolocator\LocatorInterface;
-use Slicvic\Geoip\Contracts\Geolocator\ResponseInterface;
+use Slicvic\Geoip\Locator\LocatorInterface;
+use Slicvic\Geoip\Locator\ResponseInterface;
 use Slicvic\Geoip\Exceptions\Exception;
-use Slicvic\Geoip\Geolocator\IpInfo;
-use Slicvic\Geoip\Http\Clients\Curl;
+use Slicvic\Geoip\Locator\IpInfo;
 
 /**
  * @package Slicvic\Geoip
@@ -14,20 +13,18 @@ use Slicvic\Geoip\Http\Clients\Curl;
 class Geoip
 {
     /**
-     * The geolocation service (i.e. IpInfo and FreeGeoIp).
+     * The geolocation service to use (i.e. IpInfo and FreeGeoIp).
      *
      * @var LocatorInterface
      */
     protected $locator;
 
     /**
-     * Constructor.
-     *
-     * @param LocatorInterface|null $locator Defaults to IpInfo
+     * @param LocatorInterface|null $locator Defaults to IpInfo.
      */
     public function __construct(LocatorInterface $locator = null)
     {
-        $this->locator = ($locator) ?: new IpInfo(new Curl());
+        $this->locator = $locator ?: new IpInfo();
     }
 
     /**
@@ -40,15 +37,14 @@ class Geoip
     public function locate($ip)
     {
         $response = $this->locator->locate($ip);
-        if (!($response instanceof ResponseInterface)) {
-            throw new Exception('Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocator\ResponseInterface');
+        if ($response instanceof ResponseInterface) {
+            return $response;
+        } else {
+            throw new Exception('Invalid location response, expected instance of \Slicvic\Geoip\Locator\ResponseInterface');
         }
-        return $response;
     }
 
     /**
-     * Get locator.
-     *
      * @return LocatorInterface
      */
     public function getLocator()
@@ -57,8 +53,6 @@ class Geoip
     }
 
     /**
-     * Set locator.
-     *
      * @param LocatorInterface $locator
      */
     public function setLocator(LocatorInterface $locator)

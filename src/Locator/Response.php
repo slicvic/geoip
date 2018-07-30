@@ -1,14 +1,14 @@
 <?php
 
-namespace Slicvic\Geoip\Geolocator;
+namespace Slicvic\Geoip\Locator;
 
-use Slicvic\Geoip\Contracts\Geolocator\ResponseInterface as GeoResponseInterface;
-use Slicvic\Geoip\Contracts\Http\ResponseInterface as HttpResponseInterface;
+use Slicvic\Geoip\Locator\ResponseInterface as GeoResponseInterface;
+use Slicvic\Geoip\Http\ResponseInterface as HttpResponseInterface;
 
 /**
- * Response returned by geolocation services.
+ * Locator response.
  *
- * @package Slicvic\Geoip\Geolocator
+ * @package Slicvic\Geoip\Locator
  */
 class Response implements GeoResponseInterface
 {
@@ -53,8 +53,6 @@ class Response implements GeoResponseInterface
     protected $longitude;
 
     /**
-     * Constructor.
-     *
      * @param HttpResponseInterface $httpResponse
      * @param string $ip
      * @param string $city
@@ -74,24 +72,6 @@ class Response implements GeoResponseInterface
         $this->postal = (string) $postal;
         $this->latitude = (string) $latitude;
         $this->longitude = (string) $longitude;
-    }
-
-    /**
-     * Factory.
-     *
-     * @param HttpResponseInterface $httpResponse
-     * @param string $ip
-     * @param string $city
-     * @param string $region
-     * @param string $country
-     * @param string $postal
-     * @param string $latitude
-     * @param string $longitude
-     * @return Response
-     */
-    public static function create(HttpResponseInterface $httpResponse, $ip = '', $city = '', $region = '', $country = '', $postal = '', $latitude = '', $longitude = '')
-    {
-        return (new static($httpResponse, $ip, $city, $region, $country, $postal, $latitude, $longitude));
     }
 
     /**
