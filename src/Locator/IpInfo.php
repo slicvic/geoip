@@ -24,15 +24,15 @@ class IpInfo extends AbstractLocator
             if (!empty($data['ip'])) {
                 $latlng = !empty($data['loc']) ? explode(',', $data['loc']) : null;
                 return (new Response(
-                    $httpResponse,
-                    $data['ip'],
-                    !empty($data['city']) ? $data['city'] : '',
-                    !empty($data['region']) ? $data['region'] : '',
-                    !empty($data['country']) ? $data['country'] : '',
-                    !empty($data['postal']) ? $data['postal'] : '',
-                    !empty($latlng[0]) ? $latlng[0] : '',
-                    !empty($latlng[1]) ? $latlng[1] : ''
-                ));
+                        $httpResponse,
+                        $data['ip'],
+                        !empty($data['city']) ? $data['city'] : '',
+                        !empty($data['region']) ? $data['region'] : '',
+                        !empty($data['country']) ? $data['country'] : '',
+                        !empty($data['postal']) ? $data['postal'] : '',
+                        !empty($latlng[0]) ? $latlng[0] : '',
+                        !empty($latlng[1]) ? $latlng[1] : ''
+                    ));
             } else {
                 return (new Response($httpResponse, $ip));
             }
