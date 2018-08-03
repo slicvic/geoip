@@ -20,7 +20,7 @@ class Geoip
     protected $locator;
 
     /**
-     * @param LocatorInterface|null $locator Defaults to IpInfo.
+     * @param LocatorInterface|null $locator  Defaults to IpInfo.
      */
     public function __construct(LocatorInterface $locator = null)
     {
