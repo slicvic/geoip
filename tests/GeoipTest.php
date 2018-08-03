@@ -3,12 +3,11 @@
 namespace Slicvic\Geoip\Test;
 
 use PHPUnit\Framework\TestCase;
-use Slicvic\Geoip\Contracts\Geolocator\LocatorInterface;
-use Slicvic\Geoip\Contracts\Geolocator\ResponseInterface;
+use Slicvic\Geoip\Locator\LocatorInterface;
+use Slicvic\Geoip\Locator\ResponseInterface;
 use Slicvic\Geoip\Geoip;
-use Slicvic\Geoip\Geolocator\FreeGeoIp;
-use Slicvic\Geoip\Geolocator\IpInfo;
-use Slicvic\Geoip\Http\Clients\Curl;
+use Slicvic\Geoip\Locator\IpInfo;
+use Slicvic\Geoip\Http\Client\Curl;
 
 class GeoipTest extends TestCase
 {
@@ -19,27 +18,26 @@ class GeoipTest extends TestCase
         $this->geoip = new Geoip();
     }
 
+    public function testDefaultConstructor()
+    {
+        $this->geoip = new Geoip();
+        $this->assertInstanceOf(IpInfo::class, $this->geoip->getLocator());
+    }
+
     /**
      * @expectedException \TypeError
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::__construct() must implement interface Slicvic\Geoip\Contracts\Geolocator\LocatorInterface
+     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::__construct() must implement interface Slicvic\Geoip\Locator\LocatorInterface
      */
     public function testConstructorExpectsLocatorInterface()
     {
         new Geoip(new \stdClass());
     }
 
-    public function testConstructor()
+    public function testConstructorWithMockedParam()
     {
-        // Test with default parameters
-        $this->geoip = new Geoip();
-        $this->assertInstanceOf(IpInfo::class, $this->geoip->getLocator());
-
-        // Test with mocked parameters
         $locatorStub = $this->getMockBuilder(LocatorInterface::class)
             ->getMock();
-        $locatorStub->method('locate')
-            ->willReturn(new \stdClass());
         $this->geoip = new Geoip($locatorStub);
         $this->assertSame($locatorStub, $this->geoip->getLocator());
     }
@@ -47,7 +45,7 @@ class GeoipTest extends TestCase
     /**
      * @expectedException \TypeError
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::setLocator() must implement interface Slicvic\Geoip\Contracts\Geolocator\LocatorInterface
+     * @expectedExceptionMessage Argument 1 passed to Slicvic\Geoip\Geoip::setLocator() must implement interface Slicvic\Geoip\Locator\LocatorInterface
      */
     public function testSetLocatorExpectsLocatorInterface()
     {
@@ -58,8 +56,6 @@ class GeoipTest extends TestCase
     {
         $locatorStub = $this->getMockBuilder(LocatorInterface::class)
             ->getMock();
-        $locatorStub->method('locate')
-            ->willReturn(new \stdClass());
         $this->geoip->setLocator($locatorStub);
         $this->assertSame($locatorStub, $this->geoip->getLocator());
     }
@@ -67,14 +63,12 @@ class GeoipTest extends TestCase
     /**
      * @expectedException \Slicvic\Geoip\Exceptions\Exception
      * @expectedExceptionCode 0
-     * @expectedExceptionMessage Invalid location response, expected instance of \Slicvic\Geoip\Contracts\Geolocator\ResponseInterface
+     * @expectedExceptionMessage Invalid location response, expected instance of \Slicvic\Geoip\Locator\ResponseInterface
      */
     public function testLocateThrowsInvalidResponseException()
     {
         $locatorStub = $this->getMockBuilder(LocatorInterface::class)
             ->getMock();
-        $locatorStub->method('locate')
-            ->willReturn(null);
         $this->geoip->setLocator($locatorStub);
         $this->geoip->locate('8.8.8.8');
     }
@@ -93,17 +87,16 @@ class GeoipTest extends TestCase
         $this->assertSame('US', $response->getCountry());
         $this->assertSame('94035', $response->getPostal());
         $this->assertSame('37.3860', $response->getLatitude());
-        $this->assertSame('-122.0838', $response->getLongitude());
+        $this->assertSame('-122.0840', $response->getLongitude());
     }
 
     public function testLocateWithInjectedLocator()
     {
         $ip = '8.8.8.8';
-        $httpClient = new Curl();
-        $locatorClient = new FreeGeoIp($httpClient);
+        $locator = new IpInfo();
 
-        // Test constructor injection
-        $this->geoip = new Geoip($locatorClient);
+        // Injection via constructor
+        $this->geoip = new Geoip($locator);
         $response = $this->geoip->locate($ip);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -113,12 +106,12 @@ class GeoipTest extends TestCase
         $this->assertSame('California', $response->getRegion());
         $this->assertSame('US', $response->getCountry());
         $this->assertSame('94035', $response->getPostal());
-        $this->assertSame('37.386', $response->getLatitude());
-        $this->assertSame('-122.0838', $response->getLongitude());
+        $this->assertSame('37.3860', $response->getLatitude());
+        $this->assertSame('-122.0840', $response->getLongitude());
 
-        // Test setter injection
+        // Injection via setter
         $this->geoip = new Geoip();
-        $this->geoip->setLocator($locatorClient);
+        $this->geoip->setLocator($locator);
         $response = $this->geoip->locate($ip);
 
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -128,7 +121,7 @@ class GeoipTest extends TestCase
         $this->assertSame('California', $response->getRegion());
         $this->assertSame('US', $response->getCountry());
         $this->assertSame('94035', $response->getPostal());
-        $this->assertSame('37.386', $response->getLatitude());
+        $this->assertSame('37.3860', $response->getLatitude());
         $this->assertSame('-122.0838', $response->getLongitude());
     }
 }

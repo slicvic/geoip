@@ -1,10 +1,10 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Http\Clients;
+namespace Slicvic\Geoip\Test\Http\Client;
 
 use PHPUnit\Framework\TestCase;
-use Slicvic\Geoip\Contracts\Http\ResponseInterface;
-use Slicvic\Geoip\Http\Clients\Curl;
+use Slicvic\Geoip\Http\ResponseInterface;
+use Slicvic\Geoip\Http\Client\Curl;
 
 class CurlTest extends TestCase
 {
@@ -15,7 +15,7 @@ class CurlTest extends TestCase
         $this->curl = new Curl();
     }
 
-    public function testGetRespondsWith200()
+    public function testGet200()
     {
         $response = $this->curl->get('http://www.example.com/');
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -23,7 +23,7 @@ class CurlTest extends TestCase
         $this->assertContains('This domain is established to be used for illustrative examples in documents.', $response->getBody());
     }
 
-    public function testGetRespondsWith404()
+    public function testGet404()
     {
         $response = $this->curl->get('http://www.iana.org/omains');
         $this->assertInstanceOf(ResponseInterface::class, $response);
@@ -36,7 +36,7 @@ class CurlTest extends TestCase
      * @expectedExceptionCode 6
      * @expectedExceptionMessage Couldn't resolve host name
      */
-    public function testGetThrowsCurlErrorException()
+    public function testGetThrowsException()
     {
         $this->curl->get('http/www.example.com/');
     }

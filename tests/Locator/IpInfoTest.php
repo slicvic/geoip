@@ -1,11 +1,11 @@
 <?php
 
-namespace Slicvic\Geoip\Test\Geolocator;
+namespace Slicvic\Geoip\Test\Locator;
 
 use PHPUnit\Framework\TestCase;
-use Slicvic\Geoip\Contracts\Geolocator\ResponseInterface;
-use Slicvic\Geoip\Geolocator\IpInfo;
-use Slicvic\Geoip\Http\Clients\Curl;
+use Slicvic\Geoip\Locator\ResponseInterface;
+use Slicvic\Geoip\Locator\IpInfo;
+use Slicvic\Geoip\Http\Client\Curl;
 
 class IpInfoTest extends TestCase
 {
@@ -29,31 +29,31 @@ class IpInfoTest extends TestCase
                     'country' => 'US',
                     'postal' => '94035',
                     'latitude' => '37.3860',
-                    'longitude' => '-122.0838'
+                    'longitude' => '-122.0840'
                 ]
             ],
             [ // DNS Advantage
                 '156.154.70.1',
                 [
                     'status' => 200,
-                    'city' => 'Herndon',
+                    'city' => 'Sterling',
                     'region' => 'Virginia',
                     'country' => 'US',
-                    'postal' => '20171',
-                    'latitude' => '38.9266',
-                    'longitude' => '-77.3936'
+                    'postal' => '20164',
+                    'latitude' => '39.0138',
+                    'longitude' => '-77.3987'
                 ]
             ],
             [ // Yandex.DNS
                 '77.88.8.8',
                 [
                     'status' => 200,
-                    'city' => 'Saint Petersburg',
-                    'region' => 'St.-Petersburg',
+                    'city' => '',
+                    'region' => '',
                     'country' => 'RU',
-                    'postal' => '197755',
-                    'latitude' => '60.0136',
-                    'longitude' => '30.0136'
+                    'postal' => '',
+                    'latitude' => '55.7386',
+                    'longitude' => '37.6068'
                 ]
             ],
             [ // Invalid IP
