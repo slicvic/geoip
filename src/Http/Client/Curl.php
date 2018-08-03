@@ -24,8 +24,8 @@ class Curl extends AbstractClient
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $body = curl_exec($curl);
         $headers = curl_getinfo($curl);
-        if ($curlErrno = curl_errno($curl)) {
-            throw new CurlErrorException(curl_strerror($curlErrno), $curlErrno);
+        if ($err = curl_errno($curl)) {
+            throw new CurlErrorException(curl_strerror($err), $err);
         }
         curl_close($curl);
         $response = new Response($body, $headers['http_code'], $headers);
