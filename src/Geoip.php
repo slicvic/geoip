@@ -13,7 +13,7 @@ use Slicvic\Geoip\Locator\IpInfo;
 class Geoip
 {
     /**
-     * The location service to use (e.g. IpInfo and FreeGeoIp).
+     * The location service to use (e.g. IpInfo).
      *
      * @var LocatorInterface
      */
