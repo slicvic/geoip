@@ -13,14 +13,16 @@ use Slicvic\Geoip\Locator\IpInfo;
 class Geoip
 {
     /**
-     * The location service to use (e.g. IpInfo).
+     * The location service provider.
      *
      * @var LocatorInterface
      */
     protected $locator;
 
     /**
-     * @param LocatorInterface|null $locator  Defaults to IpInfo.
+     * Constructor.
+     * 
+     * @param LocatorInterface|null $locator Defaults to IpInfo if null given.
      */
     public function __construct(LocatorInterface $locator = null)
     {
